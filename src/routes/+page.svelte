@@ -1,6 +1,7 @@
 <script>
   import { fade, fly } from 'svelte/transition';
   import { onMount } from 'svelte';
+  import { base } from '$app/paths';
   
   let { data } = $props();
   // We'll assume data.articles exists or we'll just show the hero for now if not.
@@ -27,7 +28,7 @@
       </p>
       <div class="home-tagline-rule"></div>
       <div class="hero-actions">
-        <a href="/articles" class="cta-primary">Explore Research</a>
+        <a href="{base}/articles" class="cta-primary">Explore Research</a>
         <a href="#featured" class="cta-secondary">Featured Works</a>
       </div>
     </div>
@@ -43,7 +44,7 @@
     {#if articles.length > 0}
       <div class="articles-grid">
         {#each articles as article, i}
-          <a href="/articles/{article.slug}" class="article-card" in:fly={{ y: 20, duration: 600, delay: 800 + (i * 100) }}>
+          <a href="{base}/articles/{article.slug}" class="article-card" in:fly={{ y: 20, duration: 600, delay: 800 + (i * 100) }}>
             <div class="card-tag">{article.tags[0] || 'Article'}</div>
             <div class="card-content">
               <span class="card-date">{formatDate(article.date)}</span>
@@ -62,7 +63,7 @@
     {/if}
     
     <div class="view-all-box">
-      <a href="/articles" class="view-all-link">View All Articles</a>
+      <a href="{base}/articles" class="view-all-link">View All Articles</a>
     </div>
   </section>
 </div>

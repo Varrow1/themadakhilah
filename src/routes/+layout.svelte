@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
+  import { base } from '$app/paths';
   
   let { children } = $props();
   
@@ -39,22 +40,22 @@
 </script>
 
 <svelte:head>
-  <link rel="icon" href="/favicon.svg" />
+  <link rel="icon" href="{base}/favicon.svg" />
 </svelte:head>
 
 <div id="progress"></div>
 
 <nav>
   <div class="nav-left">
-    <a class="nav-logo" href="/">
+    <a class="nav-logo" href="{base}/">
       Athari Publications
       <span class="tagline">Clarifying the Sunnah · Refuting Innovation</span>
     </a>
     <ul class="nav-links">
-      <li><a href="/" class:active={$page.url.pathname === '/'}>Home</a></li>
-      <li><a href="/articles" class:active={$page.url.pathname === '/articles' || $page.url.pathname.startsWith('/articles/')}>Articles</a></li>
-      <li><a href="/articles" onclick={(e) => { if($page.url.pathname !== '/articles') return; e.preventDefault(); /* scroll to filter */ }}>Aqeedah</a></li>
-      <li><a href="/articles" onclick={(e) => { if($page.url.pathname !== '/articles') return; e.preventDefault(); /* scroll to filter */ }}>Manhaj</a></li>
+      <li><a href="{base}/" class:active={$page.url.pathname === base || $page.url.pathname === base + '/'}>Home</a></li>
+      <li><a href="{base}/articles" class:active={$page.url.pathname.startsWith(base + '/articles')}>Articles</a></li>
+      <li><a href="{base}/articles" onclick={(e) => { if($page.url.pathname !== base + '/articles') return; e.preventDefault(); /* scroll to filter */ }}>Aqeedah</a></li>
+      <li><a href="{base}/articles" onclick={(e) => { if($page.url.pathname !== base + '/articles') return; e.preventDefault(); /* scroll to filter */ }}>Manhaj</a></li>
     </ul>
   </div>
   <div class="nav-right">

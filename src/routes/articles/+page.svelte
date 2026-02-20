@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { fade, fly } from 'svelte/transition';
+  import { base } from '$app/paths';
 
   let { data } = $props();
   const articles = $derived(data.articles);
@@ -46,7 +47,7 @@
 
   <div class="articles-grid">
     {#each articles as article, i}
-      <a href="/articles/{article.slug}" class="article-card" in:fly={{ y: 20, duration: 500, delay: 100 + (i * 50) }}>
+      <a href="{base}/articles/{article.slug}" class="article-card" in:fly={{ y: 20, duration: 500, delay: 100 + (i * 50) }}>
         <div class="card-tag">{article.tags[0] || 'Article'}</div>
         <div class="card-content">
           <span class="card-date">{formatDate(article.date)}</span>

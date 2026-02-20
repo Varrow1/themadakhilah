@@ -2,6 +2,7 @@
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
   import { fade, fly } from 'svelte/transition';
+  import { base } from '$app/paths';
   
   let { data } = $props();
   const article = $derived(data.article);
@@ -63,7 +64,7 @@
 <div class="cat-bar" in:fade={{ duration: 300 }}>{getCategoryBar()}</div>
 
 <div class="breadcrumb" in:fade={{ duration: 400, delay: 200 }}>
-  <a href="/articles">← All Articles</a> <span>/</span> <span>{article.title}</span>
+  <a href="{base}/articles">← All Articles</a> <span>/</span> <span>{article.title}</span>
 </div>
 
 <header class="art-hero" in:fly={{ y: 20, duration: 600, delay: 300 }}>
