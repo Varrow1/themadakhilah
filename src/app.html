@@ -249,8 +249,22 @@ nav {
   animation: fadeUp 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .art-body p { margin-bottom: 1.5rem; color: var(--ink-soft); line-height: 1.85; }
-.art-body .article-content > p:first-of-type { font-size: 1.1rem; }
-.art-body .article-content > p:first-of-type::first-letter {
+
+/* Basmala block */
+.basmala-block {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 2.2rem;
+  text-align: center;
+  margin: 1rem 0 3rem;
+  color: var(--gold);
+  direction: rtl;
+  text-shadow: 0 0 20px rgba(184,134,11,0.2);
+  line-height: 1.5;
+}
+
+/* Drop cap: Only for first paragraph that is NOT immediately after a basmala and is NOT a special block */
+.art-body .article-content > p:first-of-type:not(.basmala-block + p) { font-size: 1.1rem; }
+.art-body .article-content > p:first-of-type:not(.basmala-block + p)::first-letter {
   font-family: 'Playfair Display', serif;
   font-size: 4.8rem;
   font-weight: 900;

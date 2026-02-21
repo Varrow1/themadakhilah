@@ -9,7 +9,7 @@ readTime: 12
 description: "An exploration of the profound impact of companionship on one's religious steadfastness, drawing from the wisdom of the Salaf to guard against silent deviation."
 ---
 
-بسم الله الرحمن الرحيم
+<div class="basmala-block">بسم الله الرحمن الرحيم</div>
 
 All praise is due to Allāh, the Lord of the heavens and the earth, the Most Merciful, the Most Compassionate, the One perfect in His Majesty, the One exalted in His Names and Attributes. We praise Him with a praise that befits His greatness, His perfection, and His supreme authority.
 

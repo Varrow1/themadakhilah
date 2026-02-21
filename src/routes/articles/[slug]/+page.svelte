@@ -43,7 +43,10 @@
   }
 
   afterNavigate(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    // Slight delay to allow transitions to start before jumping to top
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }, 50);
   });
   
   onMount(() => {
@@ -64,47 +67,49 @@
   });
 </script>
 
-<div class="cat-bar" in:fade={{ duration: 300 }}>{getCategoryBar()}</div>
+<div class="article-page" in:fade={{ duration: 800 }}>
+  <div class="cat-bar" in:fly={{ y: -10, duration: 600, delay: 100 }}>{getCategoryBar()}</div>
 
-<div class="breadcrumb" in:fade={{ duration: 400, delay: 200 }}>
-  <a href="{base}/articles">← All Articles</a> <span>/</span> <span>{article.title}</span>
-</div>
+  <div class="breadcrumb" in:fly={{ x: -10, duration: 600, delay: 200 }}>
+    <a href="{base}/articles">← All Articles</a> <span>/</span> <span>{article.title}</span>
+  </div>
 
-<header class="art-hero" in:fly={{ y: 20, duration: 600, delay: 300 }}>
-  <div class="art-tag">{getTag()}</div>
-  <h1>{article.title}</h1>
-  <p class="art-subtitle">{article.description}</p>
-  <div class="art-meta">
-    <div class="meta-item">
-      <span class="meta-label">Author</span>
-      <span class="meta-value">{article.author}</span>
-    </div>
-    <span class="divider">|</span>
-    <div class="meta-item">
-      <span class="meta-label">Published</span>
-      <span class="meta-value">{formatDate(article.date)}</span>
-    </div>
-    {#if article.readTime}
+  <header class="art-hero" in:fly={{ y: 20, duration: 800, delay: 300 }}>
+    <div class="art-tag">{getTag()}</div>
+    <h1>{article.title}</h1>
+    <p class="art-subtitle">{article.description}</p>
+    <div class="art-meta">
+      <div class="meta-item">
+        <span class="meta-label">Author</span>
+        <span class="meta-value">{article.author}</span>
+      </div>
       <span class="divider">|</span>
       <div class="meta-item">
-        <span class="meta-label">Time</span>
-        <span class="meta-value">{article.readTime} min read</span>
+        <span class="meta-label">Published</span>
+        <span class="meta-value">{formatDate(article.date)}</span>
       </div>
-    {/if}
-  </div>
-</header>
-
-<main class="art-body" in:fade={{ duration: 600, delay: 500 }}>
-  <div class="ornament">✦ ✦ ✦</div>
-  {#if Component}
-    <div class="article-content">
-      <Component />
+      {#if article.readTime}
+        <span class="divider">|</span>
+        <div class="meta-item">
+          <span class="meta-label">Time</span>
+          <span class="meta-value">{article.readTime} min read</span>
+        </div>
+      {/if}
     </div>
-  {:else}
-    <p>Error loading article content.</p>
-  {/if}
-  <div class="ornament" style="margin-top: 4rem">✦ ✦ ✦</div>
-</main>
+  </header>
+
+  <main class="art-body" in:fly={{ y: 20, duration: 800, delay: 450 }}>
+    <div class="ornament">✦ ✦ ✦</div>
+    {#if Component}
+      <div class="article-content">
+        <Component />
+      </div>
+    {:else}
+      <p>Error loading article content.</p>
+    {/if}
+    <div class="ornament" style="margin-top: 4rem">✦ ✦ ✦</div>
+  </main>
+</div>
 
 <button class="btt" id="btt" title="Back to top" aria-label="Back to top">↑</button>
 
